@@ -53,7 +53,15 @@
 
 ;; theme
 
-(use-package base16-theme :ensure t)
-(load-theme 'base16-monokai-dark)
+;(use-package base16-theme :ensure t)
+;(load-theme 'base16-solarized-dark)
+
+(use-package color-theme-sanityinc-solarized :ensure t)
+(load-theme 'sanityinc-solarized-dark)
+
+;(use-package solarized-theme :ensure t)
+;(load-theme 'solarized-dark)
+
+
 
 ;;; kordano-modes.el ends here

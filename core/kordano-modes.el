@@ -39,4 +39,53 @@
 
 (add-all-hooks 'js2-mode-hook js2-mode-hooks)
 
+
+;;; clojure
+(use-package cider
+  :ensure t
+  :init (use-package cider-eval-sexp-fu :ensure t)
+  :config
+  (setq nrepl-log-messages t)
+  (setq cider-show-error-buffer nil)
+  (setq cider-repl-display-help-banner nil)
+  (setq cider-prompt-save-file-on-load nil)
+  (setq cider-repl-pop-to-buffer-on-connect nil)
+  (add-hook 'cider-mode-hook #'eldoc-mode))
+
+(defun clojure-mode-keys ()
+  (local-set-key (kbd "C-c C-+") 'cider-jack-in)
+  (local-set-key (kbd "C-c C-#") 'cider-jack-in-clojurescript)
+  (local-set-key (kbd "C-c j") 'cider-eval-defun-at-point)
+  (local-set-key (kbd "C-c k") 'cider-eval-last-sexp)
+  (local-set-key (kbd "C-c ö") 'cider-eval-buffer)
+  (local-set-key (kbd "C-c C-j") 'cider-eval-region)
+  (local-set-key (kbd "C-c C-ü") 'cider-doc))
+
+(defvar clojure-mode-hooks
+  (list 'enable-paredit-mode
+        'rainbow-delimiters-mode
+        'rainbow-mode
+        'clojure-mode-keys))
+
+(use-package clojure-mode
+  :ensure t
+  :config
+  (--map
+   (lambda (file-rgx)
+     (add-to-list 'auto-mode-alist '(file-rgx . clojure-mode)))
+   (list "\\.edn\\'" "\\.dtm\\'" "\\.cljx\\'"))
+  (add-all-hooks 'clojure-mode-hook clojure-mode-hooks)
+  (define-clojure-indent
+    (defroutes 'defun)
+    (GET 2)
+    (POST 2)
+    (PUT 2)
+    (DELETE 2)
+    (HEAD 2)
+    (ANY 2)
+    (context 2)
+    (render 'defun)
+    (query 'defun)
+    (params 'defun)))
+
 ;;; kordano-modes.el ends here

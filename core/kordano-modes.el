@@ -64,7 +64,6 @@
 (defvar clojure-mode-hooks
   (list 'enable-paredit-mode
         'rainbow-delimiters-mode
-        'rainbow-mode
         'clojure-mode-keys))
 
 (use-package clojure-mode
@@ -87,5 +86,42 @@
     (render 'defun)
     (query 'defun)
     (params 'defun)))
+
+
+;;; web with jsx
+(defvar webmode-files
+  (list "\\.html?\\'"
+        "\\.phtml\\'"
+        "\\.tpl\\.ph"
+        "\\.[agj]sp\\"
+        "\\.as[cp]x\\"
+        "\\.jsxx\\'" 
+        "\\.erb\\'" 
+        "\\.mustache"
+        "\\.djhtml\\'"))
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (local-set-key (kbd "\C-cj") 'company-yasnippet)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (set-face-attribute 'web-mode-current-element-highlight-face nil :background "#f92672" :foreground "black")
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-code-indent-offset 2))
+
+(use-package web-mode
+  :ensure t
+  :config
+  (--map
+   (lambda (rgx)
+     (add-to-list 'auto-mode-alist '(rgx . web-mode)))
+   webmode-files)
+  (add-hook 'web-mode-hook  'my-web-mode-hook))
+
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (if (equal web-mode-content-type "jsx")
+      (let ((web-mode-enable-part-face nil))
+        ad-do-it)
+    ad-do-it))
 
 ;;; kordano-modes.el ends here

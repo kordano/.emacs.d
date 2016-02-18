@@ -7,8 +7,6 @@
 
 ;; backup
 (setq make-backup-files nil)
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory)))
 
 ;; easier package management
 (add-to-list 'load-path "~/.emacs.d/libs/use-package")
@@ -50,5 +48,6 @@
   :config
   (yas-global-mode 1))
 
-
+;; git infos
+(use-package git-gutter+ :ensure t :config (global-git-gutter+-mode))
 ;;; kordano-helpers.el ends here

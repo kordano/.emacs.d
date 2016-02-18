@@ -28,6 +28,7 @@
 
 (setq js2-strict-missing-semi-warning nil)
 (setq-default js2-basic-offset 2)
+(font-lock-add-keywords 'js2-mode '(("fetch" . font-lock-keyword-face)))
 
 (defun js-disable-ident-tabs ()
   (set-variable 'ident-tabs-mode nil))
@@ -87,18 +88,20 @@
     (query 'defun)
     (params 'defun)))
 
-
-;;; web with jsx
-(defvar webmode-files
-  (list "\\.html?\\'"
-        "\\.phtml\\'"
-        "\\.tpl\\.ph"
-        "\\.[agj]sp\\"
-        "\\.as[cp]x\\"
-        "\\.jsxx\\'" 
-        "\\.erb\\'" 
-        "\\.mustache"
-        "\\.djhtml\\'"))
+;;; web 
+(use-package web-mode
+  :ensure t
+  :init (use-package react-snippets :ensure t)
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode)))
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
@@ -107,16 +110,14 @@
   (setq web-mode-css-indent-offset 2)
   (set-face-attribute 'web-mode-current-element-highlight-face nil :background "#f92672" :foreground "black")
   (setq web-mode-enable-current-element-highlight t)
+  (font-lock-add-keywords 'web-mode '(("fetch" . font-lock-keyword-face)))
   (setq web-mode-code-indent-offset 2))
 
-(use-package web-mode
-  :ensure t
-  :config
-  (--map
-   (lambda (rgx)
-     (add-to-list 'auto-mode-alist '(rgx . web-mode)))
-   webmode-files)
-  (add-hook 'web-mode-hook  'my-web-mode-hook))
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+
+(web-mode-set-content-type "jsx")
 
 (defadvice web-mode-highlight-part (around tweak-jsx activate)
   (if (equal web-mode-content-type "jsx")
@@ -124,4 +125,5 @@
         ad-do-it)
     ad-do-it))
 
-;;; kordano-modes.el ends here
+
+;;; jsx-modes.el ends here

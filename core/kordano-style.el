@@ -59,13 +59,12 @@
 ;(use-package color-theme-sanityinc-solarized :ensure t)
 ;(load-theme 'sanityinc-solarized-dark)
 
-(use-package solarized-theme
-  :ensure t
-  :config (load-theme 'solarized-dark))
 
+;; (use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
 
-;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
+(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
 
+;(load-theme 'base16-monokai-dark)
 
 
 ;;; kordano-modes.el ends here

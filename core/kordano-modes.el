@@ -125,5 +125,16 @@
         ad-do-it)
     ad-do-it))
 
+;;; docker
+(use-package dockerfile-mode :ensure t)
+
+
+;;; markdown
+
+(use-package markdown-mode+
+  :ensure t
+  :init
+  (use-package markdown-preview-mode :ensure t))
+
 
 ;;; jsx-modes.el ends here

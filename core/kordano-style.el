@@ -15,6 +15,9 @@
 ;; indentation
 (setq-default indent-tabs-mode nil)
 
+(setq standard-indent 2) 
+(setq indent-tabs-mode nil)
+
 ;; scrolling
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
@@ -57,12 +60,17 @@
 ;(load-theme 'base16-solarized-dark)
 
 ;(use-package color-theme-sanityinc-solarized :ensure t)
-;(load-theme 'sanityinc-solarized-dark)
+;(load-theme 'sanityinc-solarized-light)
+
+(use-package atom-one-dark-theme :ensure t :config (load-theme 'atom-one-dark))
+;(use-package hydandata-light-theme :ensure t :config (load-theme 'hydandata-light))
 
 
 ;; (use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
 
-(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
+;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
+
+
 
 ;(load-theme 'base16-monokai-dark)
 

@@ -36,10 +36,23 @@
 (defvar js2-mode-hooks
   (list 'js-disable-ident-tabs
         'electric-pair-mode
+        'tern-mode
         'hs-minor-mode))
 
 (add-all-hooks 'js2-mode-hook js2-mode-hooks)
 
+(use-package js-doc
+  :ensure t
+  :config
+  
+  (setq js-doc-mail-address "konrad.kuehne@livelycode.com"
+       js-doc-author (format "Konrad Kuehne <%s>" js-doc-mail-address)
+       js-doc-url "https://www.livelycode.com"
+       js-doc-license "ISC")
+ (add-hook 'js2-mode-hook
+           #'(lambda ()
+               (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+               (define-key js2-mode-map "@" 'js-doc-insert-tag))))
 
 ;;; clojure
 (use-package cider
@@ -136,5 +149,48 @@
   :init
   (use-package markdown-preview-mode :ensure t))
 
+;;; go language
+(defun my-go-mode-hook ()
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (setq-default) 
+  (setq tab-width 2)
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go build -v & go test -v & go vet"))
+  (setq standard-indent 2) 
+  (setq indent-tabs-mode nil)
+  (local-set-key (kbd "M-.") 'godef-jump))
 
-;;; jsx-modes.el ends here
+;;(defun auto-complete-for-go () (auto-complete-mode 1))
+
+(use-package go-mode
+  :ensure t
+  ;;:init (use-package go-autocomplete :ensure t)
+  :config
+  (setenv "GOPATH" "~/projects/go")
+  (setq exec-path (cons "/usr/local/go/bin" exec-path))
+  (add-to-list 'exec-path "~/projects/go/")
+  ;;(with-eval-after-load 'go-mode (require 'go-autocomplete))
+  (add-hook 'before-save-hook 'my-go-mode-hook)
+  ;;(add-hook 'go-mode-hook 'auto-complete-for-go)
+  )
+
+;; sql
+(defun my-sql-mode-hook ()
+  (setq-default) 
+  (setq tab-width 3)
+  (setq standard-indent 3) 
+  (setq indent-tabs-mode nil))
+
+(add-hook 'sql-mode-hook 'my-sql-mode-hook)
+
+;; swift
+
+;;^
+(load "~/.emacs.d/core/kordano-swift.el")
+
+;; android
+(use-package android-mode :ensure t)
+
+(provide 'kordano-modes)
+;;; kordano-modes.el ends here

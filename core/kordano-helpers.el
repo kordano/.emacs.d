@@ -50,4 +50,15 @@
 
 ;; git infos
 (use-package git-gutter+ :ensure t :config (global-git-gutter+-mode))
+
+
+;; flycheck
+(use-package flycheck
+  :ensure t
+  :config
+  (global-flycheck-mode))
+
+(add-to-list 'load-path "/Users/konny/Library/tern/emacs")
+(autoload 'tern-mode "tern.el" nil t)
+
 ;;; kordano-helpers.el ends here

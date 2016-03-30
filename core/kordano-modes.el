@@ -15,13 +15,20 @@
 
 (defvar elisp-mode-hooks
   (list 'emacs-mode-keys
-        'enable-paredit-mode
-        'rainbow-delimiters-mode))
+        'enable-paredit-mode))
 
 (add-all-hooks 'emacs-lisp-mode-hook elisp-mode-hooks)
 
 ;;; javascript
 (use-package js2-mode :ensure t)
+
+(add-to-list 'load-path "/Users/konny/Library/tern/emacs")
+(autoload 'tern-mode "tern.el" nil t)
+
+(use-package company-tern
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-tern))
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("(not  )ode" . js2-mode))
@@ -77,7 +84,6 @@
 
 (defvar clojure-mode-hooks
   (list 'enable-paredit-mode
-        'rainbow-delimiters-mode
         'clojure-mode-keys))
 
 (use-package clojure-mode

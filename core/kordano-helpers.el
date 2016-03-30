@@ -28,7 +28,8 @@
   :bind ("C-c C-ä" . magit-status))
 
 ;; completion
-(use-package helm :ensure t)
+(use-package helm :ensure t :config (helm-autoresize-mode t))
+(use-package helm-company :ensure t)
 
 ;; autocompletion
 (use-package company
@@ -49,16 +50,42 @@
   (yas-global-mode 1))
 
 ;; git infos
-(use-package git-gutter+ :ensure t :config (global-git-gutter+-mode))
+(use-package git-gutter+
+  :ensure t
+  :config (global-git-gutter+-mode))
 
 
 ;; flycheck
 (use-package flycheck
   :ensure t
-  :config
-  (global-flycheck-mode))
+  :config (global-flycheck-mode))
 
-(add-to-list 'load-path "/Users/konny/Library/tern/emacs")
-(autoload 'tern-mode "tern.el" nil t)
+;; tern support
+
+;; ido stuff
+(use-package flx-ido
+  :ensure t
+  :config
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (flx-ido-mode 1)
+  ;; disable ido faces to see flx highlights.
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-faces nil)
+  (setq gc-cons-threshold 20000000))
+
+;; projectile
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode)
+  (setq projectile-indexing-method 'alien))
+
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
+
 
 ;;; kordano-helpers.el ends here

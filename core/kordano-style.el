@@ -29,8 +29,8 @@
 (scroll-bar-mode -1)
 
 ;; highlighting
-(global-hl-line-mode 1)
-(global-hl-line-highlight)
+;(global-hl-line-mode 1)
+;(global-hl-line-highlight)
 
 (use-package eval-sexp-fu
   :ensure t
@@ -40,9 +40,8 @@
   :config
   (eval-sexp-fu-flash-mode 1))
 
-(use-package rainbow-delimiters
-  :ensure t
-  :config (rainbow-delimiters-mode t))
+;;(use-package rainbow-delimiters :ensure t :config (rainbow-delimiters-mode t))
+
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -52,27 +51,42 @@
 
 (setq show-paren-delay 0)
 
+(defface paren-face
+  '((((class color) (background dark))
+     (:foreground "grey50"))
+    (((class color) (background light))
+     (:foreground "grey80")))
+  "Face used to dim parentheses.")
+
+(defun dim-brackets ()
+  (font-lock-add-keywords nil '(("(\\|)" . 'paren-face)))
+  (font-lock-add-keywords nil '(("{\\|}" . 'paren-face)))
+  (font-lock-add-keywords nil '(("\\[\\|\\]" . 'paren-face))))
+
+
+(add-hook 'emacs-lisp-mode-hook 'dim-brackets)
+(add-hook 'clojure-mode-hook 'dim-brackets)
+(add-hook 'js2-mode-hook 'dim-brackets)
+
+;(set-default-font "Monaco 12")
+
 (use-package paredit :ensure t)
+
+(use-package powerline :ensure t :config (powerline-default-theme))
 
 ;; theme
 
-;(use-package base16-theme :ensure t)
-;(load-theme 'base16-solarized-dark)
+                                        ;(use-package base16-theme :ensure t)
+                                        ;(load-theme 'base16-solarized-dark)
+                                        ;(use-package color-theme-sanityinc-solarized :ensure t)
+                                        ;(load-theme 'sanityinc-solarized-light)
+                                        ;(use-package atom-one-dark-theme :ensure t :config (load-theme 'atom-one-dark))
+                                        ;(use-package noctilux-theme :ensure t :config (load-theme 'noctilux))
+                                        ;(use-package hydandata-light-theme :ensure t :config (load-theme 'hydandata-light))
+                                        ; (use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
+                                        ;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
+                                        ;(load-theme 'base16-monokai-dark)
 
-;(use-package color-theme-sanityinc-solarized :ensure t)
-;(load-theme 'sanityinc-solarized-light)
-
-(use-package atom-one-dark-theme :ensure t :config (load-theme 'atom-one-dark))
-;(use-package hydandata-light-theme :ensure t :config (load-theme 'hydandata-light))
-
-
-;; (use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
-
-;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
-
-
-
-;(load-theme 'base16-monokai-dark)
-
+(use-package moe-theme :ensure t :config (moe-dark) (powerline-moe-theme))
 
 ;;; kordano-modes.el ends here

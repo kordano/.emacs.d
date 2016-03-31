@@ -1,3 +1,9 @@
 [submodule "libs/use-package"]
 	path = libs/use-package
 	url = https://github.com/jwiegley/use-package.git
+[submodule "libs/evil"]
+	path = libs/evil
+	url = https://github.com/emacsmirror/evil.git
+[submodule "libs/org-mode"]
+	path = libs/org-mode
+	url = https://github.com/jwiegley/org-mode.git

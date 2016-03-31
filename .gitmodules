@@ -7,3 +7,9 @@
 [submodule "libs/org-mode"]
 	path = libs/org-mode
 	url = https://github.com/jwiegley/org-mode.git
+[submodule "libs/nodejs-repl.el"]
+	path = libs/nodejs-repl.el
+	url = https://github.com/abicky/nodejs-repl.el.git
+[submodule "libs/tern"]
+	path = libs/tern
+	url = https://github.com/ternjs/tern.git

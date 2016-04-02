@@ -19,47 +19,52 @@
 
 (add-all-hooks 'emacs-lisp-mode-hook elisp-mode-hooks)
 
-;;; javascript
-(use-package js2-mode :ensure t)
-
-(add-to-list 'load-path "/Users/konny/Library/tern/emacs")
-(autoload 'tern-mode "tern.el" nil t)
-
-(use-package company-tern
-  :ensure t
-  :config
-  (add-to-list 'company-backends 'company-tern))
-
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'interpreter-mode-alist '("(not  )ode" . js2-mode))
-
-(setq js2-strict-missing-semi-warning nil)
-(setq-default js2-basic-offset 2)
-(font-lock-add-keywords 'js2-mode '(("fetch" . font-lock-keyword-face)))
-
-(defun js-disable-ident-tabs ()
-  (set-variable 'ident-tabs-mode nil))
-
-(defvar js2-mode-hooks
-  (list 'js-disable-ident-tabs
-        'electric-pair-mode
-        'tern-mode
-        'hs-minor-mode))
-
-(add-all-hooks 'js2-mode-hook js2-mode-hooks)
+;; javascript helpers
+(add-to-list 'load-path "~/.emacs.d/libs/nodejs-repl.el")
+(require 'nodejs-repl)
 
 (use-package js-doc
   :ensure t
   :config
-  
   (setq js-doc-mail-address "konrad.kuehne@livelycode.com"
        js-doc-author (format "Konrad Kuehne <%s>" js-doc-mail-address)
        js-doc-url "https://www.livelycode.com"
-       js-doc-license "ISC")
- (add-hook 'js2-mode-hook
-           #'(lambda ()
-               (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
-               (define-key js2-mode-map "@" 'js-doc-insert-tag))))
+       js-doc-license "ISC"))
+
+;; javacsript
+(defun js2-mode-keys ()
+  (local-set-key (kbd "C-c C-+") 'nodejs-repl)
+  (local-set-key (kbd "C-c C-j") 'nodejs-repl-send-last-sexp)
+  (local-set-key (kbd "C-c C-ö") 'nodejs-repl-send-buffer)
+  (local-set-key (kbd "C-c C-k") 'nodejs-repl-send-region)
+  (local-set-key (kbd "C-c C-l") 'nodejs-repl-switch-to-repl)
+  (local-set-key (kbd "C-c i") 'js-doc-insert-file-doc)
+  (local-set-key (kbd "@") 'js-doc-insert-tag))
+
+(defun js-disable-ident-tabs ()
+  (set-variable 'ident-tabs-mode nil))
+
+(use-package js2-mode :ensure t)
+
+                                        ;TODO: Fix tern mode
+(use-package tern :ensure t)
+(add-to-list 'load-path "/Users/konny/Library/tern/emacs")
+(autoload 'tern-mode "tern.el" nil t)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("(not  )ode" . js2-mode))
+(setq js2-strict-missing-semi-warning nil)
+(setq-default js2-basic-offset 2)
+(font-lock-add-keywords 'js2-mode '(("fetch" . font-lock-keyword-face)))
+
+(defvar js2-mode-hooks
+  (list 'js-disable-ident-tabs
+        'electric-pair-mode
+        'js2-mode-keys
+        'hs-minor-mode))
+
+(add-all-hooks 'js2-mode-hook js2-mode-hooks)
+
+;(use-package company-tern :ensure t :config (add-to-list 'company-backends 'company-tern))
 
 ;;; clojure
 (use-package cider

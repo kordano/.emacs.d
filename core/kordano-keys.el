@@ -11,4 +11,12 @@
   (key-chord-mode 1))
 
 
+(global-set-key (kbd "M-ö") (kbd "{"))
+(global-set-key (kbd "C-ö") (kbd "["))
+(global-set-key (kbd "C-ä") (kbd "]"))
+(global-set-key (kbd "M-ä") (kbd "}"))
+
+(global-set-key (kbd "A-<right>") 'paredit-forward-slurp-sexp)
+(global-set-key (kbd "A-<left>") 'paredit-forward-barf-sexp)
+
 ;;; kordano-keys.el ends here

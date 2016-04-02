@@ -14,7 +14,6 @@
 
 ;; indentation
 (setq-default indent-tabs-mode nil)
-
 (setq standard-indent 2) 
 (setq indent-tabs-mode nil)
 
@@ -87,6 +86,13 @@
                                         ;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
                                         ;(load-theme 'base16-monokai-dark)
 
-(use-package moe-theme :ensure t :config (moe-dark) (powerline-moe-theme))
+(use-package moe-theme :ensure t
+  :config
+  (moe-dark)
+  (powerline-moe-theme)
+  (setq show-paren-style 'expression)
+  ;(require 'moe-theme-switcher)
+  )
 
+(provide 'kordano-style.el)
 ;;; kordano-modes.el ends here

@@ -5,6 +5,11 @@
 
 (setq redisplay-dont-pause t)
 
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
 ;; backup
 (setq make-backup-files nil)
 
@@ -90,5 +95,17 @@
 (require 'epa-file)
 (epa-file-enable)
 (setq epa-file-select-keys nil)
+
+
+;; TODO: add some hydra bindings
+(use-package hydra :ensure t)
+
+
+(use-package highlight-symbol
+  :ensure t
+  :bind
+  ("C-c ." . highlight-symbol-at-point)
+  ("C-c -" . highlight-symbol-next)
+  ("C-c ," . highlight-symbol-prev))
 
 ;;; kordano-helpers.el ends here

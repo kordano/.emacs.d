@@ -4,7 +4,14 @@
 
 ;;; CODE:
 ;;; --- package management ---
-
+;; time the loading of the .emacs
+;; keep this on top of your .emacs
+(defvar *emacs-load-start* (current-time))
+(defun kordano/time-to-ms (time)
+  (+ (* (+ (* (car time) (expt 2 16)) (car (cdr time))) 1000000) (car (cdr (cdr time)))))
+(defun kordano/display-timing ()
+  (message ".emacs loaded in %fms" (/ (- (kordano/time-to-ms (current-time)) (kordano/time-to-ms *emacs-load-start*)) 1000000.0)))
+(add-hook 'after-init-hook 'kordano/display-timing t)
 
 (setq package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("gnu" . "https://elpa.gnu.org/packages/")

@@ -15,6 +15,7 @@
 
 (defvar elisp-mode-hooks
   (list 'emacs-mode-keys
+        'highlight-symbol-mode
         'enable-paredit-mode))
 
 (add-all-hooks 'emacs-lisp-mode-hook elisp-mode-hooks)
@@ -60,6 +61,7 @@
   (list 'js-disable-ident-tabs
         'electric-pair-mode
         'js2-mode-keys
+        'highlight-symbol-mode
         'hs-minor-mode))
 
 (add-all-hooks 'js2-mode-hook js2-mode-hooks)
@@ -89,6 +91,7 @@
 
 (defvar clojure-mode-hooks
   (list 'enable-paredit-mode
+        'highlight-symbol-mode
         'clojure-mode-keys))
 
 (use-package clojure-mode
@@ -112,11 +115,8 @@
     (query 'defun)
     (params 'defun)))
 
-;;; web 
-(use-package web-mode
-  :ensure t
-  :init (use-package react-snippets :ensure t)
-  :config
+;;; web
+(defun auto-web-mode-files ()
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -135,13 +135,16 @@
   (set-face-attribute 'web-mode-current-element-highlight-face nil :background "#f92672" :foreground "black")
   (setq web-mode-enable-current-element-highlight t)
   (font-lock-add-keywords 'web-mode '(("fetch" . font-lock-keyword-face)))
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+  (web-mode-set-content-type "jsx")
   (setq web-mode-code-indent-offset 2))
 
-(add-hook 'web-mode-hook  'my-web-mode-hook)
+(use-package web-mode
+  :ensure t
+  :init (use-package react-snippets :ensure t)
+  :config
+  (add-all-hooks 'web-mode-hook (list 'my-web-mode-hook 'highlight-symbol-mode 'web-mode-keys)))
 
-(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
-
-(web-mode-set-content-type "jsx")
 
 (defadvice web-mode-highlight-part (around tweak-jsx activate)
   (if (equal web-mode-content-type "jsx")
@@ -151,7 +154,6 @@
 
 ;;; docker
 (use-package dockerfile-mode :ensure t)
-
 
 ;;; markdown
 
@@ -196,12 +198,13 @@
 (add-hook 'sql-mode-hook 'my-sql-mode-hook)
 
 ;; swift
-
-;;^
 (load "~/.emacs.d/core/kordano-swift.el")
 
-;; android
-(use-package android-mode :ensure t)
+;; org
+(load "~/.emacs.d/core/kordano-org.el")
+
+
+
 
 (provide 'kordano-modes)
 ;;; kordano-modes.el ends here

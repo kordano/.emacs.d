@@ -33,7 +33,11 @@
   :bind ("C-c C-ä" . magit-status))
 
 ;; completion
-(use-package helm :ensure t :config (helm-autoresize-mode t))
+(use-package helm
+  :ensure t
+  :config (helm-autoresize-mode t)
+  :bind ("C-c f" . helm-recentf))
+
 (use-package helm-company :ensure t)
 
 ;; autocompletion

@@ -71,7 +71,8 @@
 ;;; clojure
 (use-package cider
   :ensure t
-  :init (use-package cider-eval-sexp-fu :ensure t)
+  :init
+  (use-package cider-eval-sexp-fu :ensure t)
   :config
   (setq nrepl-log-messages t)
   (setq cider-show-error-buffer nil)
@@ -89,19 +90,36 @@
   (local-set-key (kbd "C-c C-j") 'cider-eval-region)
   (local-set-key (kbd "C-c C-ü") 'cider-doc))
 
+(defun my-add-pretty-lambda ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("fn" . 955)
+          ("lambda" . 955)
+          ("->" . 8594)
+          ("=>" . 8658)
+          ("map" . 8614))))
+
+
 (defvar clojure-mode-hooks
   (list 'enable-paredit-mode
         'highlight-symbol-mode
-        'clojure-mode-keys))
+        'clojure-mode-keys
+        'clj-refactor-mode
+        'yas-minor-mode
+        'hs-minor-mode
+        'my-add-pretty-lambda))
 
 (use-package clojure-mode
   :ensure t
+  :init (use-package clj-refactor :ensure t)
   :config
   (--map
    (lambda (file-rgx)
      (add-to-list 'auto-mode-alist '(file-rgx . clojure-mode)))
    (list "\\.edn\\'" "\\.dtm\\'" "\\.cljx\\'"))
   (add-all-hooks 'clojure-mode-hook clojure-mode-hooks)
+  (cljr-add-keybindings-with-prefix "C-c C-ö")
   (define-clojure-indent
     (defroutes 'defun)
     (GET 2)
@@ -137,6 +155,7 @@
   (font-lock-add-keywords 'web-mode '(("fetch" . font-lock-keyword-face)))
   (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
   (web-mode-set-content-type "jsx")
+  (setq web-mode-enable-auto-closing t)
   (setq web-mode-code-indent-offset 2))
 
 (use-package web-mode

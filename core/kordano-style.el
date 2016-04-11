@@ -94,5 +94,7 @@
   ;(require 'moe-theme-switcher)
   )
 
+(global-prettify-symbols-mode +1)
+
 (provide 'kordano-style.el)
 ;;; kordano-modes.el ends here

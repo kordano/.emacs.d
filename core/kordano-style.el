@@ -69,7 +69,8 @@
 (add-hook 'clojure-mode-hook 'dim-brackets)
 (add-hook 'js2-mode-hook 'dim-brackets)
 
-;(set-default-font "Monaco 12")
+                                        ;(set-frame-font "Envy Code R VS 11")
+(set-frame-font "Source Code Pro 10")
 
 (use-package paredit :ensure t)
 
@@ -84,7 +85,7 @@
                                         ;(use-package atom-one-dark-theme :ensure t :config (load-theme 'atom-one-dark))
                                         ;(use-package noctilux-theme :ensure t :config (load-theme 'noctilux))
                                         ;(use-package hydandata-light-theme :ensure t :config (load-theme 'hydandata-light))
-                                        ; (use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
+                                        ;(use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
                                         ;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
                                         ;(load-theme 'base16-monokai-dark)
 

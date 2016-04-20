@@ -6,6 +6,8 @@
 
 (setq vc-follow-symlinks t)
 (prefer-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
 
 ;; vim bindings
 (add-to-list 'load-path "~/.emacs.d/libs/evil")

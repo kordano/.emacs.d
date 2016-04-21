@@ -21,31 +21,17 @@
 (setq org-log-into-drawer t)
 (setq org-clock-into-drawer t)
 (setq org-agenda-use-time-grid nil)
-
-(defvar local-projects-directory-path "~/org")
-
-(defun select-project ()
-  (let ((completing-read-func (if (null ido-mode)
-                                  'completing-read
-                                'ido-completing-read)))
-    (setq project-file
-          (funcall completing-read-func
-                   "Project: "
-                   (directory-files local-projects-directory-path)
-                   nil
-                   t))))
-
-
 (setq org-tag-alist '(("design" . ?d)
+                      ("meeting" . ?e)
                       ("research" . ?s)
 		      ("feature" ?f)
+                      ("management" . ?g)
 		      ("test" . ?t)
 		      ("doc" . ?c)
 		      ("review" . ?r)
 		      ("deployment" . ?y)
                       ("bug" . ?b)
-                      ("refactor" . ?e)
-		      ("writing" . ?w)
+                      ("improvement" . ?i)
 		      ("mail" . ?m)))
 
 (setq org-todo-keywords

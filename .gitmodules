@@ -13,3 +13,6 @@
 [submodule "libs/tern"]
 	path = libs/tern
 	url = https://github.com/ternjs/tern.git
+[submodule "lib/org-mode"]
+	path = lib/org-mode
+	url = git@github.com:jwiegley/org-mode.git

@@ -3,6 +3,7 @@
 ;;; little helpers that make day-to-day stuff easier
 ;;; CODE:
 
+
 (setq redisplay-dont-pause t)
 
 (require 'recentf)
@@ -12,6 +13,9 @@
 
 ;; backup
 (setq make-backup-files nil)
+
+;; 
+(add-to-list 'load-path "~/.emacs.d/libs/org-mode/lisp")
 
 ;; easier package management
 (add-to-list 'load-path "~/.emacs.d/libs/use-package")

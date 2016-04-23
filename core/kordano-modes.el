@@ -105,14 +105,12 @@
   (list 'enable-paredit-mode
         'highlight-symbol-mode
         'clojure-mode-keys
-        'clj-refactor-mode
         'yas-minor-mode
         'hs-minor-mode
         'my-add-pretty-lambda))
 
 (use-package clojure-mode
   :ensure t
-  :init (use-package clj-refactor :ensure t)
   :config
   (--map
    (lambda (file-rgx)

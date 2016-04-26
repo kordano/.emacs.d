@@ -4,10 +4,9 @@
 ;;; CODE:
 (add-to-list 'load-path "~/.emacs.d/libs/org-mode")
 
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-(setq org-agenda-files '("~/org"))
+(setq org-directory '("~/Dropbox/org"))
+(setq org-agenda-files '("~/Dropbox/org"))
 
 (add-hook 'org-mode-hook (lambda () (toggle-truncate-lines)))
 
@@ -40,9 +39,20 @@
 
 ;; (setq org-todo-keyword-faces '(("TODO"  . (:foreground "#9AEE3A" :weight bold)) ("IN PROGRESS"  . (:foreground "orange" :weight bold)) ("DONE"  . (:foreground "forestgreen" :weight bold)) ("CANCELED"  . shadow)))
 
-(setq org-capture-templates
-  '(("t" "Task" entry (file+datetree (select-project)) "* TODO %^{Description} %^g\n  DEADLINE: %^{Deadline}t\n  :PROPERTIES:\n  :Created: %U\n  :Effort: %^{Effort}\n  :END:\n  %?")))
+(defun select-org-project ()
+  (let ((completing-read-func (if (null ido-mode)
+                                  'completing-read
+                                'ido-completing-read)))
+    (setq project-file
+          (funcall completing-read-func
+                   "Project: "
+                   (directory-files "~/Dropbox/org" nil "\\.org$")
+                   nil
+                   t))))
 
+(setq org-capture-templates
+      '(("t" "Task" entry (file+headline (concat "~/Dropbox/org/" (select-org-project)) "Aufgaben")
+         "* TODO %^{Description} %^g\n  SCHEDULED: %^{Scheduled}t\n  :PROPERTIES:\n  :Created: %U\n  :Effort: %^{Effort}\n  :END:\n  %?")))
 
 (setq org-clock-persist 'history)
 
@@ -53,6 +63,7 @@
 (global-set-key (kbd "C-c C-ü") 'org-agenda-list)
 (global-set-key (kbd "C-c ü") 'org-todo-list)
 (global-set-key (kbd "C-c C-ß") 'org-agenda-filter-by-category)
+
 (add-hook 'calendar-load-hook
 	  (lambda ()
 	    (calendar-set-date-style 'european)))

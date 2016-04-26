@@ -51,8 +51,10 @@
                    t))))
 
 (setq org-capture-templates
-      '(("t" "Task" entry (file+headline (concat "~/Dropbox/org/" (select-org-project)) "Aufgaben")
-         "* TODO %^{Description} %^g\n  SCHEDULED: %^{Scheduled}t\n  :PROPERTIES:\n  :Created: %U\n  :Effort: %^{Effort}\n  :END:\n  %?")))
+      '(("t" "Task" entry (file+headline (concat "~/Dropbox/org/" (select-org-project)) "Tasks")
+         "* TODO %^{Description} %^g\n  SCHEDULED: %^{Scheduled}t\n  :PROPERTIES:\n  :Created: %U\n  :Effort: %^{Effort}\n  :END:\n  %?")
+        ("n" "Note" entry (file+headline (concat "~/Dropbox/org/" (select-org-project)) "Notes")
+         "* %^{Description} \n  :PROPERTIES:\n  :Created: %U\n  :END:\n  %?")))
 
 (setq org-clock-persist 'history)
 

@@ -33,7 +33,7 @@
 (use-package tern :ensure t)
 (add-to-list 'load-path "/Users/konny/Library/tern/emacs")
 (autoload 'tern-mode "tern.el" nil t)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]\\'" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("(not  )ode" . js2-mode))
 (setq js2-strict-missing-semi-warning nil)
 (setq-default js2-basic-offset 2)
@@ -59,13 +59,19 @@
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode)))
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
+  )
+
+(use-package web-mode
+  :ensure t
+  :init (use-package react-snippets :ensure t)
+  :config
   (local-set-key (kbd "\C-cj") 'company-yasnippet)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -75,21 +81,8 @@
   (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
   (web-mode-set-content-type "jsx")
   (setq web-mode-enable-auto-closing t)
-  (setq web-mode-code-indent-offset 2))
-
-(use-package web-mode
-  :ensure t
-  :init (use-package react-snippets :ensure t)
-  :config
-  (add-all-hooks 'web-mode-hook (list 'my-web-mode-hook 'highlight-symbol-mode 'web-mode-keys)))
-
-
-(defadvice web-mode-highlight-part (around tweak-jsx activate)
-  (if (equal web-mode-content-type "jsx")
-      (let ((web-mode-enable-part-face nil))
-        ad-do-it)
-    ad-do-it))
-
+  (setq web-mode-code-indent-offset 2)
+  (add-hook 'web-mode-hook 'highlight-symbol-mode))
 
 (provide 'kordano-web)
 ;;; kordano-web.el ends here

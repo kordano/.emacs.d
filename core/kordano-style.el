@@ -69,10 +69,11 @@
 (add-hook 'clojure-mode-hook 'dim-brackets)
 (add-hook 'js2-mode-hook 'dim-brackets)
 
-                                        ;(set-frame-font "Envy Code R VS 11")
-                                        ;(set-frame-font "Monaco 10")
+;(set-frame-font "Envy Code R VS 11")
 
-(set-frame-font "Source Code Pro 10")
+                                        (set-frame-font "Monaco 11")
+
+;(set-frame-font "Source Code Pro 10")
 
 (use-package paredit :ensure t)
 

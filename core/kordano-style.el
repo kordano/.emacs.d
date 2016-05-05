@@ -71,7 +71,7 @@
 
 (set-frame-font
  (case system-type
-   ('darwin "Monaco 10")
+   ('darwin "Monaco 11")
    ('windows-nt "Consolas 11")
    ('gnu/linux "Source Code Pro 10")))
   

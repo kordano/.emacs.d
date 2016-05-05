@@ -8,8 +8,6 @@
   :init
   (use-package cider-eval-sexp-fu :ensure t)
   :config
-  (setq nrepl-l
-        og-messages t)
   (setq cider-show-error-buffer nil)
   (setq cider-repl-display-help-banner nil)
   (setq cider-prompt-save-file-on-load nil)

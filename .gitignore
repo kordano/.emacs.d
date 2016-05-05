@@ -7,3 +7,6 @@ session.*
 \#*\#
 bookmarks
 /eshell
+SessionDesktop.el
+ac-comphist.dat
+projectile.cache

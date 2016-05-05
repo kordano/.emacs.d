@@ -1,0 +1,12 @@
+-/auto-save-list
+-/libs
+-SessionDesktop.el
+-projectile-bookmarks.eld
+-/snippets
+-/elpa
+-/eshell
+-*ido
+-*.eld
+-ac-comphist.*
+-Session*
+-.git*

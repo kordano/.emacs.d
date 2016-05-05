@@ -35,6 +35,13 @@
 
 (add-hook 'sql-mode-hook 'my-sql-mode-hook)
 
+(use-package shader-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.fsh?\\'" . shader-mode))
+  (add-to-list 'auto-mode-alist '("\\.vsh?\\'" . shader-mode))
+  )
+
 (load "~/.emacs.d/core/modes/kordano-org.el")
 (load "~/.emacs.d/core/modes/kordano-web.el")
 (load "~/.emacs.d/core/modes/kordano-clojure.el")

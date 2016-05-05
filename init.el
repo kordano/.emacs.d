@@ -7,8 +7,14 @@
 ;; time the loading of the .emacs
 ;; keep this on top of your .emacs
 (defvar *emacs-load-start* (current-time))
+
 (defun kordano/time-to-ms (time)
-  (+ (* (+ (* (car time) (expt 2 16)) (car (cdr time))) 1000000) (car (cdr (cdr time)))))
+  (+ (* (+ (* (car time)
+              (expt 2 16))
+           (car (cdr time)))
+        1000000)
+     (car (cdr (cdr time)))))
+
 (defun kordano/display-timing ()
   (message ".emacs loaded in %fms" (/ (- (kordano/time-to-ms (current-time)) (kordano/time-to-ms *emacs-load-start*)) 1000000.0)))
 (add-hook 'after-init-hook 'kordano/display-timing t)
@@ -45,7 +51,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(setq user-full-name "konny")
+(setq user-full-name "Konrad Kühne")
 
 (load "~/.emacs.d/core/kordano-helpers.el")
 (load "~/.emacs.d/core/kordano-style.el")

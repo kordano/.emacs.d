@@ -7,7 +7,7 @@
   :ensure t
   :init (setq key-chord-two-keys-delay 0.2)
   :config
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
   (key-chord-mode 1))
 
 

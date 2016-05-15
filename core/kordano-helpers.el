@@ -92,8 +92,10 @@
   :ensure t
   :config
   (projectile-global-mode)
-  (setq projectile-indexing-method 'alien))
-
+  (case system-type
+    ('darwin (setq projectile-indexing-method 'alien))
+    ('windows-nt (setq projectile-indexing-method 'alien))
+    ('gnu/linux (setq projectile-indexing-method 'alien))))
 
 (use-package helm-projectile
   :ensure t

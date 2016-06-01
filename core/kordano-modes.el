@@ -39,8 +39,8 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.fsh?\\'" . shader-mode))
-  (add-to-list 'auto-mode-alist '("\\.vsh?\\'" . shader-mode))
-  )
+  (add-to-list 'auto-mode-alist '("\\.vsh?\\'" . shader-mode)))
+
 
 (load "~/.emacs.d/core/modes/kordano-org.el")
 (load "~/.emacs.d/core/modes/kordano-web.el")

@@ -3,6 +3,7 @@
 ;;; Configuration of go environment
 ;;; CODE:
 
+
 (defun my-go-mode-hook ()
   (add-hook 'before-save-hook 'gofmt-before-save)
   (setq-default) 
@@ -18,14 +19,13 @@
   :ensure t
   ;;:init (use-package go-autocomplete :ensure t)
   :config
-  (setenv "GOPATH" "~/projects/go")
+  (setenv "GOPATH" "/users/konny/projects/go")
   (setq exec-path (cons "/usr/local/go/bin" exec-path))
-  (add-to-list 'exec-path "~/projects/go/")
+  (add-to-list 'exec-path "/Users/konny/projects/go/")
   ;;(with-eval-after-load 'go-mode (require 'go-autocomplete))
   (add-hook 'before-save-hook 'my-go-mode-hook)
-  ;;(add-hook 'go-mode-hook 'auto-complete-for-go)
+  ;;(add-hook 'go-mode-hook 'auto-complete-for-go))
   )
-
 
 (provide 'kordano-go)
 ;;; kordano-go.el ends here

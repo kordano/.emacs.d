@@ -6,6 +6,7 @@
 
 (setq redisplay-dont-pause t)
 
+
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
@@ -29,6 +30,38 @@
 (use-package dash-functional :ensure t)
 (use-package f :ensure t)
 
+;; autocompletion
+(use-package company
+  :ensure t
+  :diminish company-mode
+  :config
+  (setq company-echo-delay 0)
+  (setq company-backends (delete 'company-clang company-backends))
+  (setq company-backends (delete 'company-semantic company-backends))
+  (add-hook 'after-init-hook 'global-company-mode)
+  (eval-after-load 'company
+    '(progn
+       (define-key company-mode-map (kbd "C-,") 'helm-company)
+       (define-key company-active-map (kbd "C-.") 'helm-company))))
+
+(use-package company-irony
+  :config
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-irony)))
+(use-package irony
+  :diminish irony-mode
+  :config
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
+
+(defun my-c-mode-common-hook ()
+  (define-key c-mode-map  [(control tab)] 'company-complete)
+  (define-key c++-mode-map  [(control tab)] 'company-complete)
+  (company-mode)
+  (irony-mode))
+
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
 ;; git
 (use-package magit
   :ensure t
@@ -44,23 +77,12 @@
 
 (use-package helm-company :ensure t)
 
-;; autocompletion
-(use-package company
-  :ensure t
-  :config
-  (setq company-echo-delay 0)
-  (add-hook 'after-init-hook 'global-company-mode)
-  (eval-after-load 'company
-    '(progn
-       (define-key company-mode-map (kbd "C-,") 'helm-company)
-       (define-key company-active-map (kbd "C-.") 'helm-company))))
-
 ;; snipptes
-(use-package yasnippet 
-  :ensure t 
-  :config
-  (yas-global-mode 1))
-
+(use-package yasnippet
+  :ensure t
+  :diminish yas-minor-mode
+  :init (setq yas-verbosity 1)
+  :config (yas-global-mode 1))
 
 ;; git infos
 (use-package git-gutter+

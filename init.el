@@ -57,4 +57,6 @@
 (load "~/.emacs.d/core/kordano-style.el")
 (load "~/.emacs.d/core/kordano-keys.el")
 (load "~/.emacs.d/core/kordano-modes.el")
+
+
 ;;; init.el ends here

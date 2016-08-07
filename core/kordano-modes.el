@@ -41,6 +41,10 @@
   (add-to-list 'auto-mode-alist '("\\.fsh?\\'" . shader-mode))
   (add-to-list 'auto-mode-alist '("\\.vsh?\\'" . shader-mode)))
 
+(use-package yaml-mode :ensure t)
+
+(use-package elixir-mode :ensure t)
+(use-package alchemist :ensure t)
 
 (load "~/.emacs.d/core/modes/kordano-org.el")
 (load "~/.emacs.d/core/modes/kordano-web.el")

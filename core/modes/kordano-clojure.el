@@ -16,11 +16,14 @@
 
 (defun clojure-mode-keys ()
   (local-set-key (kbd "C-c C-+") 'cider-jack-in)
+  (local-set-key (kbd "C-c +") 'cider-connect)
   (local-set-key (kbd "C-c C-#") 'cider-jack-in-clojurescript)
   (local-set-key (kbd "C-c j") 'cider-eval-defun-at-point)
+  (local-set-key (kbd "C-c d") 'cider-debug-defun-at-point)
+  (local-set-key (kbd "C-c l") 'cider-debug-display-locals)
   (local-set-key (kbd "C-c k") 'cider-eval-last-sexp)
   (local-set-key (kbd "C-c ö") 'cider-eval-buffer)
-  (local-set-key (kbd "C-c C-j") 'cider-eval-region)
+  (local-set-key (kbd "C-c C-k") 'cider-eval-region)
   (local-set-key (kbd "C-c C-ü") 'cider-doc))
 
 (defun my-add-pretty-lambda ()
@@ -29,7 +32,8 @@
           ("fn" . 955)
           ("lambda" . 955)
           ("->" . 8594)
-          ("=>" . 8658)
+          ("->>" . 8658)
+          ("reduce" 8659)
           ("map" . 8614))))
 
 (defun my-clj-indentation ()

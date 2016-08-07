@@ -82,6 +82,9 @@
   (setq web-mode-code-indent-offset 2)
   (add-hook 'web-mode-hook 'highlight-symbol-mode))
 
+(use-package json-mode :ensure t)
+
+
 (provide 'kordano-web)
 ;;; kordano-web.el ends here
 

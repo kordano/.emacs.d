@@ -138,4 +138,11 @@
   ("C-c -" . highlight-symbol-next)
   ("C-c ," . highlight-symbol-prev))
 
+(use-package avy
+  :ensure
+  :bind
+  ("C-c C-j" . avy-goto-word-or-subword-1)
+  ("s-." . avy-goto-word-or-subword-1)
+  ("s-w" . ace-window))
+
 ;;; kordano-helpers.el ends here

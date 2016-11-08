@@ -4,15 +4,9 @@
 [submodule "libs/evil"]
 	path = libs/evil
 	url = https://github.com/emacsmirror/evil.git
-[submodule "libs/org-mode"]
-	path = libs/org-mode
-	url = https://github.com/jwiegley/org-mode.git
 [submodule "libs/nodejs-repl.el"]
 	path = libs/nodejs-repl.el
 	url = https://github.com/abicky/nodejs-repl.el.git
 [submodule "libs/tern"]
 	path = libs/tern
 	url = https://github.com/ternjs/tern.git
-[submodule "lib/org-mode"]
-	path = lib/org-mode
-	url = git@github.com:jwiegley/org-mode.git

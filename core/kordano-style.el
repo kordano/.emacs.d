@@ -71,7 +71,7 @@
 
 (set-frame-font
  (case system-type
-   ('darwin "SF Mono 12") ;;SF Mono 12 Mononoki 13 Monaco 12
+   ('darwin "Mononoki 12") ;;SF Mono 12 Mononoki 13 Monaco 12
    ('windows-nt "Consolas 11")
    ('gnu/linux "Source Code Pro 10")))
   
@@ -81,15 +81,17 @@
 
 ;; theme
 
-;                                        (use-package base16-theme :ensure t)
-                                        ;(load-theme 'base16-solarized-dark)
+;(use-package base16-theme :ensure t)
+;(load-theme 'base16-solarized-dark)
+;(setq show-paren-style 'expression)
+
                                         ;(use-package color-theme-sanityinc-solarized :ensure t)
                                         ;(load-theme 'sanityinc-solarized-light)
                                         ;(use-package atom-one-dark-theme :ensure t :config (load-theme 'atom-one-dark))
                                         ;(use-package noctilux-theme :ensure t :config (load-theme 'noctilux))
                                         ;(use-package hydandata-light-theme :ensure t :config (load-theme 'hydandata-light))
                                         ;(use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
-                                        ;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk))
+; (use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk) (setq show-paren-style 'expression))
 
 ;(use-package material-theme :ensure t :config (load-theme 'material))
                                         ;(load-theme 'base16-monokai-dark)
@@ -97,7 +99,6 @@
 (use-package moe-theme
   :ensure t
   :config
-  (moe-dark)
   (powerline-moe-theme)
   (setq show-paren-style 'expression)
   (setq moe-theme-highlight-buffer-id t)

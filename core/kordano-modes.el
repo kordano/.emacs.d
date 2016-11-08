@@ -46,6 +46,8 @@
 (use-package elixir-mode :ensure t)
 (use-package alchemist :ensure t)
 
+(use-package gradle-mode :ensure t)
+
 (load "~/.emacs.d/core/modes/kordano-org.el")
 (load "~/.emacs.d/core/modes/kordano-web.el")
 (load "~/.emacs.d/core/modes/kordano-clojure.el")

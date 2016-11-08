@@ -24,17 +24,8 @@
   (local-set-key (kbd "C-c k") 'cider-eval-last-sexp)
   (local-set-key (kbd "C-c ö") 'cider-eval-buffer)
   (local-set-key (kbd "C-c C-k") 'cider-eval-region)
+  (local-set-key (kbd "C-c SPC") 'cider-find-var)
   (local-set-key (kbd "C-c C-ü") 'cider-doc))
-
-(defun my-add-pretty-lambda ()
-  (setq prettify-symbols-alist
-        '(
-          ("fn" . 955)
-          ("lambda" . 955)
-          ("->" . 8594)
-          ("->>" . 8658)
-          ("reduce" 8659)
-          ("map" . 8614))))
 
 (defun my-clj-indentation ()
   (define-clojure-indent
@@ -63,7 +54,6 @@
         'clj-refactor-mode
         'yas-minor-mode
         'hs-minor-mode
-        'my-add-pretty-lambda
         'my-clj-indentation
         'my-clj-files))
 

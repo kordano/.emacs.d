@@ -52,8 +52,6 @@
 
 ;;; clojure
 ;;; web
-(defun auto-web-mode-files ()
-  )
 
 
 (use-package web-mode
@@ -77,7 +75,7 @@
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (web-mode-set-content-type "jsx")
+  ;(web-mode-set-content-type "jsx")
   (setq web-mode-enable-auto-closing t)
   (setq web-mode-code-indent-offset 2)
   (add-hook 'web-mode-hook 'highlight-symbol-mode))

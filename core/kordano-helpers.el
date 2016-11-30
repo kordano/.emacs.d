@@ -67,13 +67,13 @@
   :ensure t
   :config
   (use-package evil-magit :ensure t)
-  :bind ("C-c C-ä" . magit-status))
+  :bind ("<f12>" . magit-status))
 
 ;; completion
 (use-package helm
   :ensure t
   :config (helm-autoresize-mode t)
-  :bind ("C-c f" . helm-recentf))
+  :bind ("<f9>" . helm-recentf))
 
 (use-package helm-company :ensure t)
 
@@ -121,8 +121,10 @@
 
 (use-package helm-projectile
   :ensure t
-  :config
-  (helm-projectile-on))
+  :bind
+  ("<f10>" . helm-projectile-recentf)
+  ("C-<f9>" . helm-projectile-switch-project)
+  :config (helm-projectile-on))
 
 (require 'epa-file)
 (epa-file-enable)

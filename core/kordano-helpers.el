@@ -122,8 +122,9 @@
 (use-package helm-projectile
   :ensure t
   :bind
-  ("<f10>" . helm-projectile-recentf)
-  ("C-<f9>" . helm-projectile-switch-project)
+  ("<f10>" . helm-projectile-find-file)
+  ("C-<f10>" . helm-projectile-recentf)
+  ("C-<f09>" . helm-projectile-switch-project)
   :config (helm-projectile-on))
 
 (require 'epa-file)
@@ -147,6 +148,6 @@
   :bind
   ("C-c C-j" . avy-goto-word-or-subword-1)
   ("s-." . avy-goto-word-or-subword-1)
-  ("s-w" . ace-window))
+  ("<f7>" . ace-window))
 
 ;;; kordano-helpers.el ends here

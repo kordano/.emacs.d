@@ -10,7 +10,7 @@
   (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
   (key-chord-mode 1))
 
-
+(global-set-key (kbd "<f5>") 'save-buffer)
 (global-set-key (kbd "M-ö") (kbd "{"))
 (global-set-key (kbd "C-ö") (kbd "["))
 (global-set-key (kbd "C-ä") (kbd "]"))

@@ -124,7 +124,7 @@
   :bind
   ("<f10>" . helm-projectile-find-file)
   ("C-<f10>" . helm-projectile-recentf)
-  ("C-<f09>" . helm-projectile-switch-project)
+  ("C-<f9>" . helm-projectile-switch-project)
   :config (helm-projectile-on))
 
 (require 'epa-file)

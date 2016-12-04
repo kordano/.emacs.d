@@ -30,8 +30,8 @@
 (scroll-bar-mode -1)
 
 ;; highlighting
-;(global-hl-line-mode 1)
-;(global-hl-line-highlight)
+(global-hl-line-mode 1)
+(global-hl-line-highlight)
 
 (use-package eval-sexp-fu
   :ensure t
@@ -73,7 +73,7 @@
  (case system-type
    ('darwin "Mononoki 12") ;;SF Mono 12 Mononoki 13 Monaco 12
    ('windows-nt "Consolas 11")
-   ('gnu/linux "Source Code Pro 10")))
+   ('gnu/linux "Mononoki 11")))
   
 (use-package paredit :ensure t)
 
@@ -91,19 +91,12 @@
                                         ;(use-package noctilux-theme :ensure t :config (load-theme 'noctilux))
                                         ;(use-package hydandata-light-theme :ensure t :config (load-theme 'hydandata-light))
                                         ;(use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
-; (use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk) (setq show-paren-style 'expression))
+(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk) (setq show-paren-style 'delimiter))
 
 ;(use-package material-theme :ensure t :config (load-theme 'material))
                                         ;(load-theme 'base16-monokai-dark)
 
-(use-package moe-theme
-  :ensure t
-  :config
-  (powerline-moe-theme)
-  (setq show-paren-style 'expression)
-  (setq moe-theme-highlight-buffer-id t)
-  (moe-theme-set-color 'cyan)
-  (moe-dark))
+;(use-package moe-theme :ensure t :config (powerline-moe-theme) (setq show-paren-style 'expression) (setq moe-theme-highlight-buffer-id t) (moe-theme-set-color 'cyan) (moe-dark))
 
 
 (global-prettify-symbols-mode +1)

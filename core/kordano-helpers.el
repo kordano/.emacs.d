@@ -125,6 +125,7 @@
   ("<f10>" . helm-projectile-find-file)
   ("C-<f10>" . helm-projectile-recentf)
   ("C-<f9>" . helm-projectile-switch-project)
+  ("C-<f12>" . helm-projectile-grep)
   :config (helm-projectile-on))
 
 (require 'epa-file)

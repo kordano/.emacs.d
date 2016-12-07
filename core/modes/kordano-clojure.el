@@ -54,7 +54,7 @@
         'clojure-mode-keys
         'clj-refactor-mode
         'yas-minor-mode
-        'hs-minor-mod
+        'hs-minor-mode
         'my-clj-indentation
         'my-clj-files))
 

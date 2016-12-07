@@ -22,6 +22,7 @@
   (local-set-key (kbd "C-c d") 'cider-debug-defun-at-point)
   (local-set-key (kbd "C-c l") 'cider-debug-display-locals)
   (local-set-key (kbd "C-c k") 'cider-eval-last-sexp)
+  (local-set-key (kbd "C-<f11>") 'cider-test-run-ns-tests)
   (local-set-key (kbd "C-c ö") 'cider-eval-buffer)
   (local-set-key (kbd "C-c C-k") 'cider-eval-region)
   (local-set-key (kbd "C-c SPC") 'cider-find-var)
@@ -53,7 +54,7 @@
         'clojure-mode-keys
         'clj-refactor-mode
         'yas-minor-mode
-        'hs-minor-mode
+        'hs-minor-mod
         'my-clj-indentation
         'my-clj-files))
 

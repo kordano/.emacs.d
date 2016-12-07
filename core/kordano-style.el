@@ -71,7 +71,7 @@
 
 (set-frame-font
  (case system-type
-   ('darwin "Mononoki 12") ;;SF Mono 12 Mononoki 13 Monaco 12
+   ('darwin "Input 12") ;;SF Mono 12 Mononoki 13 Monaco 12
    ('windows-nt "Consolas 11")
    ('gnu/linux "Source Code Pro 10")))
   

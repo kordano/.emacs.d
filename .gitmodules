@@ -10,3 +10,6 @@
 [submodule "libs/tern"]
 	path = libs/tern
 	url = https://github.com/ternjs/tern.git
+[submodule "libs/org-reveal"]
+	path = libs/org-reveal
+	url = https://github.com/yjwen/org-reveal.git

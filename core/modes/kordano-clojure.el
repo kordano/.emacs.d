@@ -8,6 +8,10 @@
   :init
   (use-package cider-eval-sexp-fu :ensure t)
   :config
+  (setq cider-cljs-lein-repl
+      "(do (require 'figwheel-sidecar.repl-api)
+           (figwheel-sidecar.repl-api/start-figwheel!)
+           (figwheel-sidecar.repl-api/cljs-repl))")
   (setq cider-show-error-buffer nil)
   (setq cider-repl-display-help-banner nil)
   (setq cider-prompt-save-file-on-load nil)

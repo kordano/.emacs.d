@@ -15,12 +15,20 @@
 ;; backup
 (setq make-backup-files nil)
 
-;; 
-(add-to-list 'load-path "~/.emacs.d/libs/org-mode/lisp")
+;; org mode
+;(add-to-list 'load-path "~/.emacs.d/libs/org-mode/lisp")
+;(require 'org)
+;(add-to-list 'load-path "~/.emacs.d/libs/org-reveal")
+;(require 'ox-reveal)
+
 
 ;; easier package management
 (add-to-list 'load-path "~/.emacs.d/libs/use-package")
 (require 'use-package)
+
+(use-package org :ensure t)
+
+(use-package ox-reveal :ensure t)
 
 ;; emacs lisp functional helpers
 (use-package dash
@@ -145,10 +153,15 @@
   ("C-c ," . highlight-symbol-prev))
 
 (use-package avy
-  :ensure
+  :ensure t
   :bind
   ("C-c C-j" . avy-goto-word-or-subword-1)
   ("s-." . avy-goto-word-or-subword-1)
   ("<f7>" . ace-window))
+
+(use-package tea-time
+  :ensure t
+  :bind
+  ("C-c C-t" . tea-time))
 
 ;;; kordano-helpers.el ends here

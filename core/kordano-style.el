@@ -91,14 +91,21 @@
                                         ;(use-package noctilux-theme :ensure t :config (load-theme 'noctilux))
                                         ;(use-package hydandata-light-theme :ensure t :config (load-theme 'hydandata-light))
                                         ;(use-package solarized-theme :ensure t :config (load-theme 'solarized-dark))
-(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk) (setq show-paren-style 'delimiter))
+;(use-package cyberpunk-theme :ensure t :config (load-theme 'cyberpunk) (setq show-paren-style 'delimiter))
 
 ;(use-package material-theme :ensure t :config (load-theme 'material))
                                         ;(load-theme 'base16-monokai-dark)
 
-;(use-package moe-theme :ensure t :config (powerline-moe-theme) (setq show-paren-style 'expression) (setq moe-theme-highlight-buffer-id t) (moe-theme-set-color 'cyan) (moe-dark))
+(use-package moe-theme
+  :ensure t
+  :config
+  (powerline-moe-theme)
+  (setq show-paren-style 'expression)
+  (setq moe-theme-highlight-buffer-id t)
+  (moe-theme-set-color 'cyan)
+  (moe-dark))
 
-(setq show-paren-style 'delimiter)
+;(setq show-paren-style 'delimiter)
 (global-prettify-symbols-mode +1)
 
 ;;(add-hook 'eshell-load-hook 'nyan-prompt-enable)
